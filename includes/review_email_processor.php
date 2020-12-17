@@ -13,7 +13,7 @@ class DRReviewEmailProcessor {
                                        AND reservation_status="Checked out"'
 		);
 
-		if($emailContent>active==1){
+		if($emailContent->active==1){
 		
 		foreach ($reservationsForProcessing as $reservation){
 			error_log(print_r($reservation,true));
@@ -24,12 +24,7 @@ class DRReviewEmailProcessor {
            <span style=" display: block;"> <img class="body_image_sample" src="'.$emailContent->logo.'" alt=""></span>
 			<p class="body_intro_sample">Dear '.$reservation->first_name.'</p>
 			<p class="body_intro_sample">'.$emailContent->body_intro.'</p>
-            <a href="http://escapia-wp.loc/review-submission/?reservation_number='.$reservation->reservation_number.'" style="background: #7dbddf;
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
-    font-size: 20px;">Submit Your Review</a>
+             <a href="'.get_site_url().'/review-submission/?reservation_number='.$reservation->reservation_number.'" style="background: #7dbddf;
 			<p class="body_exit_sample">'.$emailContent->body_exit.'</p>
 		';
 			$headers = ['Content-Type: text/html; charset=ISO-8859-1', 'From: jim@digitalredefined.com'];
