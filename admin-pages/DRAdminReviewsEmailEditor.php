@@ -114,6 +114,7 @@ class DRAdminReviewsEmailEditor {
 
 			$templateUpdate = $wpdb->update(DRECModel::get_review_email_template_table_name(),
 				['email_subject' => $_POST['subject'],
+				'notification_email' => $_POST['notification_email'],
 				 'logo' => $_POST['logo'],
 				 'body_intro' => $_POST['body_intro'],
 				 'body_exit' => $_POST['body_exit'],
@@ -125,7 +126,7 @@ class DRAdminReviewsEmailEditor {
 		}
 
 
-		$this->template = $wpdb->get_row( "SELECT id, email_subject, logo, body_intro, body_exit,active FROM ".DRECModel::get_review_email_template_table_name()." WHERE id=1" );
+		$this->template = $wpdb->get_row( "SELECT id,notification_email, email_subject, logo, body_intro, body_exit,active FROM ".DRECModel::get_review_email_template_table_name()." WHERE id=1" );
 		?>
 		<link rel="stylesheet" id="dresc_admin-css" href="<?php echo content_url();?>/plugins/dr-escapia/css/jquery-ui-fresh.css" type="text/css" media="all">
 <!--		<link rel="stylesheet" id="dresc_admin-css" href="--><?php //echo content_url();?><!--/plugins/dr-escapia/css/admin.min.css?ver=2.4.14" type="text/css" media="all">-->
@@ -163,7 +164,15 @@ class DRAdminReviewsEmailEditor {
 										<p><input type="checkbox" name="active" value="active" <?php if ($this->template->active==1) { echo 'checked';  } ?>></p>
 									</td>
 								</tr>
+                                <tr valign="top">
+                                    <th scope="row">
+                                        <label for="notification_emai">Notification Email
+                                    </th>
+                                    <td>
+                                        <input type="text" name="notification_email" id="notification_email" value="<?php echo $this->template->notification_email ?>"/>
 
+                                    </td>
+                                </tr>
 								<tr valign="top">
 									<th scope="row">
 										<label for="subject">Subject</label>

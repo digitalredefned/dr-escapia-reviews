@@ -80,6 +80,17 @@ class DRAdminReviewsProcessor {
 			array( $this, 'dr_get_review_request_email_page' )
 		);
 
+		add_submenu_page(
+			'dr_escapia_review_upload',
+			__( 'Create Review' ),
+			__( 'Create Review' ),
+			'manage_options',
+			'dr_review_create',
+			array( $this, 'dr_get_review_create_page' )
+		);
+
+
+
 //		//TODO: Add script action
 	}
 
